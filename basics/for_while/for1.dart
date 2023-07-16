@@ -12,3 +12,5 @@ void main() {
   }
   print(total);
 }
+
+// for (int i=0; i<nums.length; i++)의 기본적인 방법과 for (int number in nums)의 보다 간단한 방법
