@@ -10,4 +10,5 @@
   
 ## Flutter Projects
 - [Photo Slide Show App](https://github.com/iamdami/dart/tree/main/flutter/photoSlide)
-- [Couple D-Day App](https://github.com/iamdami/simpleFlutterProjects/tree/main/flutter/coupleDday)  
+- [Couple D-Day App](https://github.com/iamdami/simpleFlutterProjects/tree/main/flutter/coupleDday)
+- [Random Number Generator](https://github.com/iamdami/simpleFlutterProjects/tree/main/flutter/randomNumberGenerator)  
