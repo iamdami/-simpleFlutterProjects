@@ -1,6 +1,8 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:rand_num_generator/component/num_row.dart';
 import 'package:rand_num_generator/constant/color.dart';
+import 'package:rand_num_generator/screen/settings.screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -10,6 +12,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int maxNum = 100;
   List<int> randNums = [
     123,
     456,
@@ -25,7 +28,9 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _Header(),
+              _Header(
+                onPressed: onSettingsPop,
+              ),
               _Body(randNums: randNums),
               _Footer(onPressed: onRandNumGenerator),
             ],
@@ -35,11 +40,28 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  void onSettingsPop() async {
+    final res = await Navigator.of(context).push<int>(
+      MaterialPageRoute(
+        builder: (BuildContext context) {
+          return SettingsScreen(
+            maxNum: maxNum,
+          );
+        },
+      ),
+    );
+    if (res != null) {
+      setState(() {
+        maxNum = res;
+      });
+    }
+  }
+
   void onRandNumGenerator() {
     final rand = Random();
     final Set<int> newNums = {};
     while (newNums.length != 3) {
-      final nums = rand.nextInt(1000);
+      final nums = rand.nextInt(maxNum);
       newNums.add(nums);
     }
     setState(() {
@@ -49,7 +71,12 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class _Header extends StatelessWidget {
-  const _Header({super.key});
+  final VoidCallback onPressed;
+
+  const _Header({
+    required this.onPressed,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +92,7 @@ class _Header extends StatelessWidget {
           ),
         ),
         IconButton(
-          onPressed: () {},
+          onPressed: onPressed,
           icon: Icon(
             Icons.newspaper,
             color: colorBtn,
@@ -78,6 +105,7 @@ class _Header extends StatelessWidget {
 
 class _Body extends StatelessWidget {
   final List<int> randNums;
+
   const _Body({
     required this.randNums,
     Key? key,
@@ -89,21 +117,13 @@ class _Body extends StatelessWidget {
       child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: randNums
+              .asMap()
+              .entries
               .map(
                 (x) => Padding(
-                  padding: EdgeInsets.only(bottom: 16.0),
-                  child: Row(
-                    children: x
-                        .toString()
-                        .split("")
-                        .map(
-                          (y) => Image.asset(
-                            "asset/img/$y.png",
-                            height: 70.0,
-                            width: 50.0,
-                          ),
-                        )
-                        .toList(),
+                  padding: EdgeInsets.only(bottom: x.key == 2 ? 0 : 16.0),
+                  child: NumRow(
+                    number: x.value,
                   ),
                 ),
               )
