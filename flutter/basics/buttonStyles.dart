@@ -7,12 +7,14 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("button"),
+        centerTitle: true,
+        backgroundColor: Colors.teal[200],
+        title: Text("BUTTONS"),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        padding: const EdgeInsets.symmetric(horizontal: 50.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             ElevatedButton(
@@ -33,7 +35,7 @@ class HomeScreen extends StatelessWidget {
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.pinkAccent, //메인 색
+                  backgroundColor: Colors.pinkAccent[100], //메인 색
                   foregroundColor: Colors.white, //글자 및 애니메이션 색
                   shadowColor: Colors.blueGrey, //그림자 색
                   elevation: 10.0, //3D 입체감 높이
@@ -55,7 +57,7 @@ class HomeScreen extends StatelessWidget {
                   // backgroundColor: Colors.yellow, //메인 색
                   // elevation: 10.0,
                   textStyle: TextStyle(
-                    fontSize: 16.0,
+                    fontSize: 20.0,
                   ),
                   padding: EdgeInsets.all(20.0),
                   side: BorderSide(
