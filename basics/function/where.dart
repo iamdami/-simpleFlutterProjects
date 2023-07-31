@@ -48,3 +48,12 @@ class Person {
     return "Person(name: $name, group: $group)";
   }
 }
+
+// final pickBts = parsedPpl.where(
+//   (x) => x.group == 'bts',);
+//   print(pickBts)
+
+// [Person(name: 로제, group: 블랙핑크), Person(name: 지수, group: 블랙핑크), Person(name: 뷔, group: bts), Person(name: 제이홉, group: bts)]
+// (Person(name: 뷔, group: bts), Person(name: 제이홉, group: bts))
+
+// where() 이용해 bts 그룹의 데이터만 가져오기
