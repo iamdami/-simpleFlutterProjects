@@ -61,3 +61,15 @@ class Person {
     return "Person(name: $name, group: $group)";
   }
 }
+
+// pickBts: (Person(name: 뷔, group: bts), Person(name: 제이홉, group: bts))
+// res: (Person(name: 뷔, group: bts), Person(name: 제이홉, group: bts))
+
+// 위 두 결과가 같은 것을 볼 수 있음
+
+// functional programming의 장점은 이처럼 계속 바꿔가며 진행(chaining)할 수 있다는 점
+// -> 새로운 형태의 값을 만들어 낼 수 있음
+// functional programming은 완전히 새로운 List(값)를 생성해 줌
+
+// 코드가 간결해진다는 장점이 있기에 functional programming 하는 건데, 너무 많이 변경해버리면 협업이나 등등에 문제가 될 수 있음
+// -> 정말 필요한 것만 functional programming 해주는 게 좋음
