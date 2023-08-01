@@ -9,6 +9,7 @@
 - [Basics of Flutter](https://github.com/iamdami/dart/tree/main/flutter/basics)
   
 ## Flutter Projects
-- [Photo Slide Show App](https://github.com/iamdami/dart/tree/main/flutter/photoSlide)
-- [Couple D-Day App](https://github.com/iamdami/simpleFlutterProjects/tree/main/flutter/coupleDday)
-- [Random Number Generator](https://github.com/iamdami/simpleFlutterProjects/tree/main/flutter/randomNumberGenerator)  
+- [Photo Slide Show](https://github.com/iamdami/dart/tree/main/flutter/photoSlide)
+- [Couple D-Day](https://github.com/iamdami/simpleFlutterProjects/tree/main/flutter/coupleDday)
+- [Random Number Generator](https://github.com/iamdami/simpleFlutterProjects/tree/main/flutter/randomNumberGenerator)
+- [Video Player](https://github.com/iamdami/simpleFlutterProjects/tree/main/flutter/videoPlayer)  
