@@ -1,7 +1,7 @@
 # Video Player
 ---
-![videoPlayer1](https://img1.daumcdn.net/thumb/R470x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FoHd99%2FbtspkLyToW9%2FvqhmE7Cz3wO5jVBfhI2kC0%2Fimg.png)  
-![videoPlayer2](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FdGV4In%2FbtspTHOLfAX%2FGaBCx965vUMlLZhQFaHl90%2Fimg.png)  
+![videoPlayer1](https://img1.daumcdn.net/thumb/R500x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FoHd99%2FbtspkLyToW9%2FvqhmE7Cz3wO5jVBfhI2kC0%2Fimg.png)  
+![videoPlayer2](https://img1.daumcdn.net/thumb/R1200x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FdGV4In%2FbtspTHOLfAX%2FGaBCx965vUMlLZhQFaHl90%2Fimg.png)  
 <br>
 
 ## 개발환경
