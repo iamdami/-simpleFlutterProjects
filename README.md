@@ -1,4 +1,4 @@
-# Simple Flutter Projects
+# Flutter Projects
 😎 I'm gonna be an awesome Flutter developer! ✨  
 <br>
   
