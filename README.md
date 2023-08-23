@@ -1,14 +1,11 @@
 # Flutter Projects
-😎 I'm gonna be an awesome Flutter developer! ✨  
 <br>
-  
+
 ## Dart
 - [Basics of Dart Language](https://github.com/iamdami/dart/tree/main/basics)
-<br>
 
 ## Flutter
 - [Basics of Flutter](https://github.com/iamdami/dart/tree/main/flutter/basics)
-<br>
 
 ## Flutter Projects
 - [포토 슬라이드쇼](https://github.com/iamdami/dart/tree/main/flutter/photoSlide)
