@@ -1,13 +1,10 @@
-# Flutter Projects
-<br>
-
-## Dart
+# Flutter Projects 🩵
+---
+## Dart, Flutter
 - [Basics of Dart Language](https://github.com/iamdami/dart/tree/main/basics)
-
-## Flutter
 - [Basics of Flutter](https://github.com/iamdami/dart/tree/main/flutter/basics)
 
-## Flutter Projects
+## Projects
 - [포토 슬라이드쇼](https://github.com/iamdami/dart/tree/main/flutter/photoSlide)
 - [커플 디데이 앱](https://github.com/iamdami/simpleFlutterProjects/tree/main/flutter/coupleDday)
 - [랜덤숫자 생성기](https://github.com/iamdami/simpleFlutterProjects/tree/main/flutter/randomNumberGenerator)
