@@ -28,6 +28,8 @@
 - path: ^1.8.3
 - get_it: ^7.6.0
 
+### dev_dependencies
+- flutter_lints: ^2.0.0
 - drift_dev: ^2.11.0
 - build_runner: ^2.4.6
 <br>
