@@ -1,6 +1,6 @@
 # Couple D-Day App
 ---
-![Couple](https://img1.daumcdn.net/thumb/R700x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FTmI3N%2Fbtsp2jn48Z5%2F53NJ5NZL3H9Zxn7NXPe7pk%2Fimg.png)  
+![Couple](https://img1.daumcdn.net/thumb/R600x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FTmI3N%2Fbtsp2jn48Z5%2F53NJ5NZL3H9Zxn7NXPe7pk%2Fimg.png)  
 <br>
 
 ## 개발환경
