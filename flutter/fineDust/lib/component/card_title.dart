@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
-import '../const/colors.dart';
 
 class CardTitle extends StatelessWidget {
   final String title;
-  const CardTitle({required this.title, Key? key}) : super(key: key);
+  final Color bgColor;
+
+  const CardTitle({
+    required this.title,
+    required this.bgColor,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: darkColor,
+          color: bgColor,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(
               16.0,
@@ -24,9 +29,8 @@ class CardTitle extends StatelessWidget {
           title,
           style: TextStyle(
             color: Colors.black87,
-            fontFamily: "Indie",
-            fontWeight: FontWeight.w700,
-            fontSize: 19.0,
+            fontWeight: FontWeight.w300,
+            fontSize: 20.0,
           ),
           textAlign: TextAlign.center,
         ),
