@@ -1,34 +1,26 @@
-import 'package:fine_dust/const/colors.dart';
 import 'package:flutter/material.dart';
-import 'main_app_bar.dart';
+import '../const/regions.dart';
 
-const regions = [
-  "Seoul",
-  "Gyeonggi",
-  "Incheon",
-  "Daejeon",
-  "Sejong",
-  "Chungnam",
-  "Chungbuk",
-  "Gyeongnam",
-  "Gwangju",
-  "Jeonbuk",
-  "Gyeongbuk",
-  "Daegu",
-  "Ulsan",
-  "Busan",
-  "Jeonnam",
-  "Gangwon",
-  "Jeju",
-];
+typedef OnRegionTap = void Function(String region);
 
 class MainDrawer extends StatelessWidget {
-  const MainDrawer({super.key});
+  final OnRegionTap onRegionTap;
+  final String selectedRegion;
+  final Color darkColor;
+  final Color lightColor;
+
+  const MainDrawer({
+    required this.onRegionTap,
+    required this.selectedRegion,
+    required this.darkColor,
+    required this.lightColor,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: primaryColor,
+      backgroundColor: darkColor,
       child: ListView(
         children: [
           DrawerHeader(
@@ -49,8 +41,10 @@ class MainDrawer extends StatelessWidget {
                   tileColor: Colors.white,
                   selectedTileColor: lightColor,
                   selectedColor: Colors.black87,
-                  selected: e == "Sejong",
-                  onTap: () {},
+                  selected: e == selectedRegion,
+                  onTap: () {
+                    onRegionTap(e);
+                  },
                   title: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
