@@ -4,6 +4,7 @@ import 'package:fine_dust/model/stat_model.dart';
 import 'package:fine_dust/repository/stat_repo.dart';
 import 'package:fine_dust/utils/data_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import '../component/category_card.dart';
 import '../component/hourly_card.dart';
 import '../component/main_drawer.dart';
@@ -22,22 +23,20 @@ class _HomeScreenState extends State<HomeScreen> {
   ScrollController scrollController = ScrollController();
 
   @override
-  initState(){
+  initState() {
     super.initState();
 
     scrollController.addListener(scrollListener);
   }
 
   @override
-  dispose(){
+  dispose() {
     scrollController.removeListener(scrollListener);
     scrollController.dispose();
     super.dispose();
   }
 
   Future<Map<ItemCode, List<StatModel>>> fetchData() async {
-    Map<ItemCode, List<StatModel>> stats = {};
-
     List<Future> futures = [];
 
     for (ItemCode itemCode in ItemCode.values) {
@@ -52,23 +51,37 @@ class _HomeScreenState extends State<HomeScreen> {
     // 모든 StatRepo.fetchData()가 끝나기까지 기다리지 않고 바로 다음 loop 실행
     // -> 한번에 기다렸다가 결과 받을 수 있음
 
+    //Hive에 data 넣기
     for (int i = 0; i < res.length; i++) {
+      //ItemCode
       final key = ItemCode.values[i];
+      //List<StatModel>
       final value = res[i];
 
-      stats.addAll({
-        key: value,
-      });
+      final box = Hive.box<StatModel>(key.name);
+      for (StatModel stat in value) {
+        box.put(stat.dataTime.toString(), stat);
+      }
     }
 
-    return stats;
+    //Hive로부터 data 가져와서 직접 만들기
+    return ItemCode.values.fold<Map<ItemCode, List<StatModel>>>(
+      {},
+      (previousValue, itemCode) {
+        final box = Hive.box<StatModel>(itemCode.name);
+        previousValue.addAll({
+          itemCode: box.values.toList(),
+        });
+        return previousValue;
+      },
+    );
   }
 
   //isExpanded 값 결정
-  scrollListener(){
-    bool isExpanded = scrollController.offset <500 - kToolbarHeight;
+  scrollListener() {
+    bool isExpanded = scrollController.offset < 500 - kToolbarHeight;
 
-    if(isExpanded !=this.isExpanded){
+    if (isExpanded != this.isExpanded) {
       setState(() {
         this.isExpanded = isExpanded;
       });
@@ -117,64 +130,64 @@ class _HomeScreenState extends State<HomeScreen> {
         }).toList();
 
         return Scaffold(
-            drawer: MainDrawer(
-              darkColor: status.darkColor,
-              lightColor: status.lightColor,
-              selectedRegion: region,
-              onRegionTap: (String region) {
-                setState(() {
-                  this.region = region;
-                });
-                Navigator.of(context).pop(); //서랍에서 지역 선택하면 서랍 닫히게
-              },
-            ),
-            body: Container(
-              color: status.primaryColor,
-              child: CustomScrollView(
-                controller: scrollController,
-                slivers: [
-                  MainAppBar(
-                    isExpanded: isExpanded,
-                    region: region,
-                    stat: pm10RecentStat,
-                    status: status, //최근 데이터에 해당하는 상태
-                    dateTime: pm10RecentStat.dataTime,
-                  ),
-                  SliverToBoxAdapter(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        CategoryCard(
-                          darkColor: status.darkColor,
-                          lightColor: status.lightColor,
-                          region: region,
-                          models: ssModel,
-                        ),
-                        const SizedBox(height: 16.0),
-                        ...stats.keys.map(
-                              (itemCode) {
-                            final stat = stats[itemCode]!;
+          drawer: MainDrawer(
+            darkColor: status.darkColor,
+            lightColor: status.lightColor,
+            selectedRegion: region,
+            onRegionTap: (String region) {
+              setState(() {
+                this.region = region;
+              });
+              Navigator.of(context).pop(); //서랍에서 지역 선택하면 서랍 닫히게
+            },
+          ),
+          body: Container(
+            color: status.primaryColor,
+            child: CustomScrollView(
+              controller: scrollController,
+              slivers: [
+                MainAppBar(
+                  isExpanded: isExpanded,
+                  region: region,
+                  stat: pm10RecentStat,
+                  status: status, //최근 데이터에 해당하는 상태
+                  dateTime: pm10RecentStat.dataTime,
+                ),
+                SliverToBoxAdapter(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      CategoryCard(
+                        darkColor: status.darkColor,
+                        lightColor: status.lightColor,
+                        region: region,
+                        models: ssModel,
+                      ),
+                      const SizedBox(height: 16.0),
+                      ...stats.keys.map(
+                        (itemCode) {
+                          final stat = stats[itemCode]!;
 
-                            return Padding(
-                              padding: const EdgeInsets.only(bottom: 20.0),
-                              child: HourlyCard(
-                                darkColor: status.darkColor,
-                                lightColor: status.lightColor,
-                                category:
-                                DataUtils.getItemCodeString(itemCode: itemCode),
-                                stats: stat,
-                                region: region,
-                              ),
-                            );
-                          },
-                        ).toList(),
-                        const SizedBox(height: 16.0),
-                      ],
-                    ),
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 20.0),
+                            child: HourlyCard(
+                              darkColor: status.darkColor,
+                              lightColor: status.lightColor,
+                              category: DataUtils.getItemCodeString(
+                                  itemCode: itemCode),
+                              stats: stat,
+                              region: region,
+                            ),
+                          );
+                        },
+                      ).toList(),
+                      const SizedBox(height: 16.0),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
+          ),
         );
       },
     );
