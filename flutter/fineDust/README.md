@@ -1,6 +1,6 @@
 # 미세먼지 측정 앱
 ---
-![fineDust](https://blog.kakaocdn.net/dn/pAlHR/btstkrbQzTd/yS4BadUwSgoOgxo0cUTCK1/img.gif)  
+[시연 영상](https://tv.kakao.com/v/440869904)
 <br>
 
 ## 개발환경
