@@ -9,11 +9,18 @@
 <br>
 
 ## 기능
-- 
+- Dio 이용한 HTTP 요청
+- 정부 Open API 사용해 실시간 미세먼지 측정
+- Hive NoSQL 데이터베이스 사용
 <br>
 
 ## 주요 구성요소
-- 
+- Hive
+- Dio
+- 공공데이터포털 API
+- CustomScrollView
+- Drawer
+
 <br>
 
 ## 플러그인
