@@ -1,6 +1,7 @@
 import 'package:actual/common/const/data.dart';
 import 'package:actual/shop/component/shop_card.dart';
 import 'package:actual/shop/model/shop_model.dart';
+import 'package:actual/shop/view/shop_detailed_screen.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -40,8 +41,17 @@ class ShopScreen extends StatelessWidget {
 
                   final model = ShopModel.fromJson(json: item);
 
-                  return ShopCard.fromModel(
-                    model: model,
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => ShopDetailedScreen(),
+                        ),
+                      );
+                    },
+                    child: ShopCard.fromModel(
+                      model: model,
+                    ),
                   );
                 },
                 separatorBuilder: (_, index) {
