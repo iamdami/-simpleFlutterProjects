@@ -1,4 +1,5 @@
 import 'package:actual/common/const/colors.dart';
+import 'package:actual/shop/model/shop_detailed_model.dart';
 import 'package:flutter/material.dart';
 
 import '../model/shop_model.dart';
@@ -43,6 +44,7 @@ class ShopCard extends StatelessWidget {
       deliveryTime: model.deliveryTime,
       deliveryFee: model.deliveryFee,
       isDetailed: isDetailed,
+      detail: model is ShopDetailedModel ? model.detail : null,
     );
   }
 
