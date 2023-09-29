@@ -33,7 +33,9 @@ class ShopScreen extends StatelessWidget {
             future: paginationShop(),
             builder: (context, AsyncSnapshot<List> snapshot) {
               if (!snapshot.hasData) {
-                return Container();
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
               }
               return ListView.separated(
                 itemBuilder: (_, index) {
@@ -45,7 +47,9 @@ class ShopScreen extends StatelessWidget {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (_) => ShopDetailedScreen(),
+                          builder: (_) => ShopDetailedScreen(
+                            id: model.id,
+                          ),
                         ),
                       );
                     },
