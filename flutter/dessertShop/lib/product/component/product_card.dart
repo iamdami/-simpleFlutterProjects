@@ -1,8 +1,36 @@
 import 'package:actual/common/const/colors.dart';
+import 'package:actual/shop/model/shop_detailed_model.dart';
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({super.key});
+  final Image image;
+  final String name;
+  final String detail;
+  final int price;
+
+  const ProductCard({
+    required this.image,
+    required this.name,
+    required this.detail,
+    required this.price,
+    Key? key,
+  }) : super(key: key);
+
+  factory ProductCard.fromModel({
+    required ShopProductModel model,
+  }) {
+    return ProductCard(
+      image: Image.network(
+        model.imgUrl,
+        width: 110,
+        height: 110,
+        fit: BoxFit.cover,
+      ),
+      name: model.name,
+      detail: model.detail,
+      price: model.price,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -11,12 +39,7 @@ class ProductCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(8.0),
-            child: Image.asset(
-              "asset/imgs/food/iceCream.png",
-              width: 110,
-              height: 110,
-              fit: BoxFit.cover,
-            ),
+            child: image,
           ),
           const SizedBox(width: 16.0),
           Expanded(
@@ -25,15 +48,15 @@ class ProductCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "iceCream",
+                  name,
                   style: TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
                 Text(
-                  "Wanna take a bite?",
-                  overflow: TextOverflow.ellipsis, //넘어가면 말줄임표 처리
+                  detail,
+                  overflow: TextOverflow.ellipsis, 
                   maxLines: 2,
                   style: TextStyle(
                     color: body_text_color,
@@ -41,7 +64,7 @@ class ProductCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "3600 won",
+                  "$price won",
                   textAlign: TextAlign.right,
                   style: TextStyle(
                     color: primary_color,
