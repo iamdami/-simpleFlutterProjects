@@ -37,12 +37,8 @@ class ShopDetailedModel extends ShopModel {
       detail: json["detail"],
       products: json["products"]
           .map<ShopProductModel>(
-            (x) => ShopProductModel(
-              id: x["id"],
-              name: x["name"],
-              imgUrl: x["imgUrl"],
-              detail: x["detail"],
-              price: x["price"],
+            (x) => ShopProductModel.fromJson(
+              json: x,
             ),
           )
           .toList(),
@@ -64,4 +60,16 @@ class ShopProductModel {
     required this.detail,
     required this.price,
   });
+
+  factory ShopProductModel.fromJson({
+    required Map<String, dynamic> json,
+  }) {
+    return ShopProductModel(
+      id: json["id"],
+      name: json["name"],
+      imgUrl: "http://$ip${json["imgUrl"]}",
+      detail: json["detail"],
+      price: json["price"],
+    );
+  }
 }
