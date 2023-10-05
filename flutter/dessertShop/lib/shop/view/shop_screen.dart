@@ -41,7 +41,7 @@ class ShopScreen extends StatelessWidget {
                 itemBuilder: (_, index) {
                   final item = snapshot.data![index];
 
-                  final model = ShopModel.fromJson(json: item);
+                  final model = ShopModel.fromJson(item);
 
                   return GestureDetector(
                     onTap: () {
