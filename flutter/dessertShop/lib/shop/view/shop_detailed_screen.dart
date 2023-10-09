@@ -39,7 +39,7 @@ class ShopDetailedScreen extends StatelessWidget {
             );
           }
 
-          final item = ShopDetailedModel.fromJson(json: snapshot.data!);
+          final item = ShopDetailedModel.fromJson(snapshot.data!);
 
           return CustomScrollView(
             slivers: [
