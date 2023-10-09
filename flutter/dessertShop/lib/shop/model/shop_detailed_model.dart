@@ -1,7 +1,12 @@
 import 'package:actual/common/const/data.dart';
+import 'package:actual/common/utils/data_utils.dart';
 import 'package:actual/shop/model/shop_model.dart';
 import 'package:flutter/material.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'shop_detailed_model.g.dart';
+
+@JsonSerializable()
 class ShopDetailedModel extends ShopModel {
   final String detail;
   final List<ShopProductModel> products;
@@ -20,35 +25,17 @@ class ShopDetailedModel extends ShopModel {
     required this.products,
   });
 
-  factory ShopDetailedModel.fromJson({
-    required Map<String, dynamic> json,
-  }) {
-    return ShopDetailedModel(
-      id: json["id"],
-      name: json["name"],
-      thumbUrl: "http://$ip${json["thumbUrl"]}",
-      tags: List<String>.from(json["tags"]),
-      priceRange:
-          ShopPriceRange.values.firstWhere((e) => e.name == json["priceRange"]),
-      ratings: json["ratings"],
-      ratingsCount: json["ratingsCount"],
-      deliveryTime: json["deliveryTime"],
-      deliveryFee: json["deliveryFee"],
-      detail: json["detail"],
-      products: json["products"]
-          .map<ShopProductModel>(
-            (x) => ShopProductModel.fromJson(
-              json: x,
-            ),
-          )
-          .toList(),
-    );
-  }
+  factory ShopDetailedModel.fromJson(Map<String, dynamic>json)
+  => _$ShopDetailedModelFromJson(json);
 }
 
+@JsonSerializable()
 class ShopProductModel {
   final String id;
   final String name;
+  @JsonKey(
+    fromJson: DataUtils.pathToUrl,
+  )
   final String imgUrl;
   final String detail;
   final int price;
@@ -61,15 +48,6 @@ class ShopProductModel {
     required this.price,
   });
 
-  factory ShopProductModel.fromJson({
-    required Map<String, dynamic> json,
-  }) {
-    return ShopProductModel(
-      id: json["id"],
-      name: json["name"],
-      imgUrl: "http://$ip${json["imgUrl"]}",
-      detail: json["detail"],
-      price: json["price"],
-    );
-  }
+  factory ShopProductModel.fromJson(Map<String, dynamic>json)
+  => _$ShopProductModelFromJson(json);
 }
