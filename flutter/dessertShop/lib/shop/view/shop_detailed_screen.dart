@@ -3,6 +3,7 @@ import 'package:actual/common/layout/default_layout.dart';
 import 'package:actual/product/component/product_card.dart';
 import 'package:actual/shop/component/shop_card.dart';
 import 'package:actual/shop/model/shop_detailed_model.dart';
+import 'package:actual/shop/repo/shop_repo.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -14,38 +15,36 @@ class ShopDetailedScreen extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  Future<Map<String, dynamic>> getShopDetailed() async {
+  Future<ShopDetailedModel> getShopDetailed() async {
     final dio = Dio();
-    final accessToken = await storage.read(key: ACCESS_TOKEN_KEY);
 
-    final resp = await dio.get(
-      "http://$ip/restaurant/$id",
-      options: Options(headers: {"authorization": "Bearer $accessToken"}),
-    );
-    return resp.data;
+    final repo = ShopRepo(dio, baseUrl: "http://$ip/restaurant");
+    return repo.getShopDetail(id: id);
   }
 
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
       title: "iceCream",
-      child: FutureBuilder<Map<String, dynamic>>(
+      child: FutureBuilder<ShopDetailedModel>(
         future: getShopDetailed(),
-        builder: (_, AsyncSnapshot<Map<String, dynamic>> snapshot) {
-          print(snapshot.data);
+        builder: (_, AsyncSnapshot<ShopDetailedModel> snapshot) {
+          if(snapshot.hasError){
+            return Center(
+              child: Text(snapshot.error.toString()),
+            );
+          }
           if (!snapshot.hasData) {
             return Center(
               child: CircularProgressIndicator(),
             );
           }
 
-          final item = ShopDetailedModel.fromJson(snapshot.data!);
-
           return CustomScrollView(
             slivers: [
-              renderTop(model: item),
+              renderTop(model: snapshot.data!),
               renderLabel(),
-              renderProducts(products: item.products),
+              renderProducts(products: snapshot.data!.products),
             ],
           );
         },
